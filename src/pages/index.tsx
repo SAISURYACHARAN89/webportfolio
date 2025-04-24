@@ -13,16 +13,12 @@ import { CertificatesSection } from "@/components/ui/CertificatesSection";
 import {
   IconBrandGithub,
   IconBrandLinkedin,
-  IconBrandX,
-  IconExchange,
   IconHome,
   IconNewSection,
-  IconTerminal2,
   IconUser,
   IconCode,
   IconBriefcase,
   IconSchool,
-  IconMail,
   IconFileText,
   IconCertificate,
 } from "@tabler/icons-react";
