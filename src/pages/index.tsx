@@ -7,7 +7,7 @@ import {ContactForm} from "@/components/ContactForm"
 import { Geist, Geist_Mono } from "next/font/google";
 import { FloatingDock } from "@/components/ui/floating-dock";
 import { InfiniteMovingCards } from "@/components/ui/infinity-moving-cards";
-import { Button } from "@/components/ui/moving-border";
+// import { Button } from "@/components/ui/moving-border";
 import { SkillsSection } from "@/components/ui/SkillsSection";
 import { CertificatesSection } from "@/components/ui/CertificatesSection";
 import {
@@ -141,15 +141,19 @@ export default function Home() {
   >
     View My Work
   </a>
-            <a href="#contact">
-  <Button
+  {/* <Button
     borderRadius="1.2rem"
     className="bg-white dark:bg-slate-900 text-black dark:text-white border border-neutral-200 dark:border-slate-800 
-               hover:bg-neutral-100 dark:hover:bg-slate-800 
-               transition-colors duration-200"
+    hover:bg-neutral-100 dark:hover:bg-slate-800 
+    transition-colors duration-200"
+    >
+    Contact Me
+    </Button> */}
+    <a href="#contact"  style={{borderRadius : "1.2rem"}}
+    className="px-5 py-5 bg-white-600 hover:text-white font-medium transition"
   >
     Contact Me
-  </Button>
+  
 </a>
 
           </div>
