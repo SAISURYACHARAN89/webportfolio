@@ -3,6 +3,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial, Preload } from "@react-three/drei";
 import * as random from "maath/random/dist/maath-random.cjs";
 import Image from "next/image";
+import * as THREE from 'three';
 import {ContactForm} from "@/components/ContactForm"
 import { Geist, Geist_Mono } from "next/font/google";
 import { FloatingDock } from "@/components/ui/floating-dock";
@@ -23,43 +24,47 @@ import {
   IconCertificate,
 } from "@tabler/icons-react";
 
-// const Stars = (props) => {
-//   const ref = useRef();
-//   const [sphere] = useState(() => random.inSphere(new Float32Array(5000), { radius: 1.2 })); // Fixed the closing parenthesis
+const Stars: React.FC<React.ComponentProps<typeof Points>> = (props) => {
+  const ref = useRef<THREE.Points>(null);
+  const [sphere] = useState<Float32Array>(() =>
+    random.inSphere(new Float32Array(5000), { radius: 1.2 }) as Float32Array
+  );
+  
 
-//   useFrame((state, delta) => {
-//     ref.current.rotation.x -= delta / 10;
-//     ref.current.rotation.y -= delta / 15;
-//   });
+  useFrame((_, delta) => {
+    if (ref.current) {
+      ref.current.rotation.x -= delta / 10;
+      ref.current.rotation.y -= delta / 15;
+    }
+  });
 
-  // return (
-  //   <group rotation={[0, 0, Math.PI / 4]}>
-  //     <Points ref={ref} positions={sphere} stride={3} frustumCulled {...props}>
-  //       <PointMaterial
-  //         transparent
-  //         color='#f272c8'
-  //         size={0.002}
-  //         sizeAttenuation={true}
-  //         depthWrite={false}
-  //       />
-  //     </Points>
-  //   </group>
-  // );
-// };
+  return (
+    <group rotation={[0, 0, Math.PI / 4]}>
+      <Points ref={ref} positions={sphere} stride={3} frustumCulled {...props}>
+        <PointMaterial
+          transparent
+          color="#f272c8"
+          size={0.002}
+          sizeAttenuation
+          depthWrite={false}
+        />
+      </Points>
+    </group>
+  );
+};
 
 const StarsCanvas = () => {
   return (
-    <div className='w-full h-full fixed inset-0 z-[-1]'>
+    <div className="w-full h-full fixed inset-0 z-[-1]">
       <Canvas camera={{ position: [0, 0, 1] }}>
         <Suspense fallback={null}>
-          {/* <Stars /> */}
+          <Stars />
         </Suspense>
         <Preload all />
       </Canvas>
     </div>
   );
 };
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -110,8 +115,7 @@ export default function Home() {
       `}
       >
          <StarsCanvas />
-      {/* Background Animation */}
-      {/* <Boxes /> */}
+      
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-black to-gray-900 z-0 opacity-40" />
 
 
@@ -134,27 +138,26 @@ export default function Home() {
           </p>
           {/* <div className="flex gap-4"> */}
           <div className="flex justify-center gap-4 mt-6">
-  <a 
-    style={{ borderRadius: "1.2rem" }}
-    href="#projects"
-    className="px-5 py-5 bg-blue-600 hover:bg-blue-700 text-white font-medium transition"
-  >
-    View My Work
-  </a>
-  {/* <Button
-    borderRadius="1.2rem"
-    className="bg-white dark:bg-slate-900 text-black dark:text-white border border-neutral-200 dark:border-slate-800 
-    hover:bg-neutral-100 dark:hover:bg-slate-800 
-    transition-colors duration-200"
-    >
-    Contact Me
-    </Button> */}
-    <a href="#contact"  style={{borderRadius : "1.2rem"}}
-    className="px-5 py-5 bg-white-600 hover:text-white font-medium transition"
-  >
-    Contact Me
   
+  <a
+  href="https://github.com/SAISURYACHARAN89"
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{ borderRadius: "1.2rem" }}
+  className="px-6 py-4 bg-blue-600 hover:bg-blue-700 text-white font-medium transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+>
+  View My Work
 </a>
+
+<a
+  href="#contact"  // Replace with your email address
+ style={{ borderRadius: "1.2rem" }}
+  className="px-6 py-4 bg-gray-800 hover:bg-gray-700 text-white font-medium transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+>
+  Contact Me
+</a>
+
+
 
           </div>
         </section>
@@ -275,51 +278,47 @@ export default function Home() {
    
           </div>
         </section>
-
-       {/* Contact Section */}
+{/* Contact Section */}
 <section id="contact" className="py-20">
   <div className="container mx-auto px-4 sm:px-6 lg:px-8">
     <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center">
       Get In Touch
     </h2>
     <div className="flex flex-col lg:flex-row gap-8 items-center">
-  {/* Contact Form - Left Side */}
-  <div className="w-full lg:w-1/4 lg:ml-45">
-    <div className="bg-gray-900/80 backdrop-blur-sm rounded-xl p-6 shadow-xl shadow-blue-900/20 border border-gray-700/50">
-    <ContactForm />
-      
-      <div className="mt-6 flex justify-center gap-4">
-        <a href="https://github.com/SAISURYACHARAN89" className="text-gray-400 hover:text-white transition-colors p-1.5 rounded-full hover:bg-gray-700/30">
-          <IconBrandGithub size={18} />
-        </a>
-        <a href="https://www.linkedin.com/in/sai-surya-charan-pentapati-098496257/" className="text-gray-400 hover:text-white transition-colors p-1.5 rounded-full hover:bg-gray-700/30">
-          <IconBrandLinkedin size={18} />
-        </a>
-        <a href="https://leetcode.com/u/SaiSuryaCharanP/" className="text-gray-400 hover:text-white transition-colors p-1.5 rounded-full hover:bg-gray-700/30">
-          <IconCode size={18} />
-        </a>
+      {/* Image - Left Side */}
+      <div className="w-full lg:w-1/2 flex justify-center">
+        <Image 
+          src="/images/undraw_connection_ts3f.svg"  // Removed "/public" from path
+          alt="Contact Illustration" 
+          width={500} 
+          height={300} 
+          className="object-contain"
+          priority // Optional for above-the-fold images
+        />
+      </div>
+
+      {/* Contact Form - Right Side */}
+      <div className="w-full lg:w-1/4 lg:ml-45">
+        <div className="bg-gray-900/80 backdrop-blur-sm rounded-xl p-6 shadow-xl shadow-blue-900/20 border border-gray-700/50">
+          <ContactForm />
+          
+          <div className="mt-6 flex justify-center gap-4">
+            <a href="https://github.com/SAISURYACHARAN89" className="text-gray-400 hover:text-white transition-colors p-1.5 rounded-full hover:bg-gray-700/30">
+              <IconBrandGithub size={18} />
+            </a>
+            <a href="https://www.linkedin.com/in/sai-surya-charan-pentapati-098496257/" className="text-gray-400 hover:text-white transition-colors p-1.5 rounded-full hover:bg-gray-700/30">
+              <IconBrandLinkedin size={18} />
+            </a>
+            <a href="https://leetcode.com/u/SaiSuryaCharanP/" className="text-gray-400 hover:text-white transition-colors p-1.5 rounded-full hover:bg-gray-700/30">
+              <IconCode size={18} />
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-
-      {/* Image - Right Side */}
-<div className="w-full lg:w-1/2 flex justify-center">
-  {/* <div className="relative w-full max-w-md h-96 rounded-2xl overflow-hidden border border-gray-700"> */}
-    {/* Correct Image Path */}
-    <Image 
-      src="/images/undraw_connection_ts3f.svg"  // Removed "/public" from path
-      alt="Contact Illustration" 
-      width={500} 
-      height={300} 
-      className="object-contain"
-      priority // Optional for above-the-fold images
-    />
-
-  {/* </div> */}
-  </div>
-    </div>
-  </div>
 </section>
+
 </div>
       {/* Floating Dock */}
       <div className="fixed bottom-3 left-1/2 -translate-x-1/2 z-50">
