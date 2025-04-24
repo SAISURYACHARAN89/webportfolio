@@ -278,6 +278,21 @@ export default function Home() {
    
           </div>
         </section>
+        <section id="project-demo" className="my-16 px-4">
+  <div className="flex justify-center">
+    <div className="w-full max-w-4xl aspect-video shadow-xl rounded-2xl overflow-hidden">
+      <iframe
+        className="w-full h-full"
+        src="https://www.youtube.com/embed/QhG129s-7qI"
+        title="Project Demo"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      ></iframe>
+    </div>
+  </div>
+</section>
+
 {/* Contact Section */}
 <section id="contact" className="py-20">
   <div className="container mx-auto px-4 sm:px-6 lg:px-8">
