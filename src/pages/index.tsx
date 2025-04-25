@@ -9,6 +9,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { FloatingDock } from "@/components/ui/floating-dock";
 import { InfiniteMovingCards } from "@/components/ui/infinity-moving-cards";
 // import { Button } from "@/components/ui/moving-border";
+import { SiLeetcode } from "react-icons/si";
 import { SkillsSection } from "@/components/ui/SkillsSection";
 import { CertificatesSection } from "@/components/ui/CertificatesSection";
 import {
@@ -283,7 +284,7 @@ export default function Home() {
     <div className="w-full max-w-4xl aspect-video shadow-xl rounded-2xl overflow-hidden">
       <iframe
         className="w-full h-full"
-        src="https://www.youtube.com/embed/QhG129s-7qI"
+        src="https://www.youtube.com/embed/QhG129s-7qI?rel=0"
         title="Project Demo"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -319,13 +320,13 @@ export default function Home() {
           
           <div className="mt-6 flex justify-center gap-4">
             <a href="https://github.com/SAISURYACHARAN89" className="text-gray-400 hover:text-white transition-colors p-1.5 rounded-full hover:bg-gray-700/30">
-              <IconBrandGithub size={18} />
+              <IconBrandGithub size={22} />
             </a>
             <a href="https://www.linkedin.com/in/sai-surya-charan-pentapati-098496257/" className="text-gray-400 hover:text-white transition-colors p-1.5 rounded-full hover:bg-gray-700/30">
-              <IconBrandLinkedin size={18} />
+              <IconBrandLinkedin size={22} />
             </a>
             <a href="https://leetcode.com/u/SaiSuryaCharanP/" className="text-gray-400 hover:text-white transition-colors p-1.5 rounded-full hover:bg-gray-700/30">
-              <IconCode size={18} />
+              <SiLeetcode size={22} />
             </a>
           </div>
         </div>
