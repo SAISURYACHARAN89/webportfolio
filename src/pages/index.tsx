@@ -169,9 +169,9 @@ export default function Home() {
           </h2>
           <div className="flex flex-col md:flex-row gap-12 items-center">
             <div className="md:w-1/3 flex justify-center">
-              <div className="relative w-64 h-64 rounded-full overflow-hidden">
+              <div className="relative w-64 h-80 rounded-full overflow-hidden">
                 <Image 
-                  src="/images/formalpicofme.jpg" 
+                  src="/images/surya.png" 
                   alt="Profile Photo"
                   fill
                   className="object-cover"
